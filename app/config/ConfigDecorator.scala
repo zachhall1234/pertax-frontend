@@ -69,7 +69,7 @@ class ConfigDecorator @Inject() (configuration: Configuration, langs: Langs) ext
   def toPortalUrl(path: String) = new URL(portalBaseUrl + path)
 
   def ssoifyUrl(url: URL) = {
-    s"$companyAuthFrontendHost/ssoout/non-digital?continue=" + play.utils.UriEncoding.encodePathSegment(url.toString, "UTF-8")
+    s"$companyAuthFrontendHost/ssoout/non-digital?continue=" + URLEncoder.encode(url.toString, "UTF-8")
   }
 
   def sa302Url(saUtr: String, taxYear: String) = ssoifyUrl(toPortalUrl(s"/self-assessment-file/$taxYear/ind/$saUtr/return/viewYourCalculation/reviewYourFullCalculation"))
